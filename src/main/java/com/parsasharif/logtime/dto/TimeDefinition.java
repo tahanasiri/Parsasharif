@@ -1,10 +1,10 @@
 package com.parsasharif.logtime.dto;
 
 
-public class TaskDefinition {
+public class TimeDefinition {
     private String cronExpression;
 
-    public TaskDefinition() {
+    public TimeDefinition() {
     }
 
     public String getCronExpression() {
