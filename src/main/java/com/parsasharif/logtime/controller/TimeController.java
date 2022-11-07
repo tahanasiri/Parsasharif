@@ -9,6 +9,8 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping(path = "/api")
@@ -31,12 +33,12 @@ public class TimeController {
 
 
     @PostMapping("/logScheduledTime")
-    public void logScheduledTime(@RequestBody TimeDefinition timeDefinition){
+    public void logScheduledTime(@Valid @RequestBody TimeDefinition timeDefinition){
         taskScheduler.schedule(runnableService, new CronTrigger(timeDefinition.getCronExpression()));
     }
 
     @GetMapping("/latestTime")
-    public Object getLatestTime(@RequestBody MonthObject months){
+    public Object getLatestTime(@Valid @RequestBody MonthObject months){
         return timeService.getLatestTime(months.getMonths());
     }
 }
